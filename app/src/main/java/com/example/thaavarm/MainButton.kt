@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
@@ -37,7 +36,7 @@ fun MainButton(
     val iconTintColor by transition.animateColor(label = "")
     { state -> if (state) RedB else Color.White
     }
-    val icon = if (isCamera) Icons.Filled.Star else Icons.AutoMirrored.Filled.ArrowBack
+    val icon = if (isCamera) Icons.Filled.Star else Icons.Filled.ArrowBack
 
     Button(
         onClick = onClick,
