@@ -1,5 +1,6 @@
 package com.example.thaavarm
 
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -10,7 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import java.io.File
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -31,7 +33,9 @@ fun CameraScreen(navController: NavController) {
                 outputDirectory = outputDirectory,
                 executor = cameraExecutor,
                 onImageCaptured = { uri ->
-                    navController.navigate("result/$uri")
+                    val encodedUri = URLEncoder.encode(uri.toString(), StandardCharsets.UTF_8.toString())
+                    Log.d("CameraScreen", "Navigating to URI: $encodedUri")
+                    navController.navigate("result/$encodedUri")
                 },
                 onError = { exc ->
                     errorMessage = exc.message
