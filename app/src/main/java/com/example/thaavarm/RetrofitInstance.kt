@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
-    private const val BASE_URL = "https://my-api.plantnet.org/v2/"
+    private const val BASE_URL = "https://my-api.plantnet.org/"
 
     val api: PlantNetApi by lazy {
         Retrofit.Builder()
