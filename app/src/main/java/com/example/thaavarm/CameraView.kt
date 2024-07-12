@@ -8,10 +8,12 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
@@ -63,6 +65,32 @@ fun CameraView(
             factory = { previewView },
             modifier = Modifier.fillMaxSize()
         )
+
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            // Top semi-transparent box
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+                    .background(Color.Black.copy(alpha = 0.5f))
+            )
+            // Transparent middle section for the camera preview
+            Box(
+                modifier = Modifier
+                    .weight(2f)
+                    .fillMaxWidth()
+                    .background(Color.Transparent)
+            )
+            // Bottom semi-transparent box
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+                    .background(Color.Black.copy(alpha = 0.5f))
+            )
+        }
 
         imageCapture.value?.let { capture ->
             MainButton(
