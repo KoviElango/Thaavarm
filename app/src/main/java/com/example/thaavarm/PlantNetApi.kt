@@ -17,3 +17,5 @@ interface PlantNetApi {
         @Query("api-key") apiKey: String
     ): Response<PlantNetResponse>
 }
+
+//API end point to 'all' organs
