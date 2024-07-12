@@ -63,6 +63,7 @@ dependencies {
     implementation("androidx.camera:camera-view:1.2.0-beta01")
     implementation("androidx.camera:camera-extensions:1.2.0-beta01")
     implementation("io.coil-kt:coil-compose:2.3.0")
+    implementation(libs.androidx.lifecycle.common.jvm)
     debugImplementation("androidx.compose.ui:ui-tooling:1.5.0")
     debugImplementation("androidx.compose.ui:ui-test-manifest:1.5.0")
 

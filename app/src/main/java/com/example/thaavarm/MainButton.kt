@@ -23,24 +23,24 @@ import com.example.thaavarm.ui.theme.YellowB
 
 @Composable
 fun MainButton(
-    text: String,
     onClick: () -> Unit,
-    isCamera: Boolean
+    isCamera: Boolean,
+    modifier: Modifier = Modifier
 ) {
     val transition = updateTransition(targetState = isCamera, label = "")
-    val backgroundColor by transition.animateColor(label = "")
-    { state -> if (state) YellowB else Color.Gray
+    val backgroundColor by transition.animateColor(label = "") { state ->
+        if (state) YellowB else Color.Gray
     }
 
-
-    val iconTintColor by transition.animateColor(label = "")
-    { state -> if (state) RedB else Color.White
+    val iconTintColor by transition.animateColor(label = "") { state ->
+        if (state) RedB else Color.White
     }
+
     val icon = if (isCamera) Icons.Filled.Star else Icons.Filled.ArrowBack
 
     Button(
         onClick = onClick,
-        modifier = Modifier.size(64.dp),
+        modifier = modifier.size(64.dp),
         shape = CircleShape,
         colors = ButtonDefaults.buttonColors(
             containerColor = backgroundColor
@@ -59,7 +59,7 @@ fun MainButton(
 @Composable
 fun MainButtonPreview() {
     Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-        MainButton(text = "Take Photo", onClick = {}, isCamera = true)
-        MainButton(text = "Go Back", onClick = {}, isCamera = false)
+        MainButton(onClick = {}, isCamera = true)
+        MainButton(onClick = {}, isCamera = false)
     }
 }
