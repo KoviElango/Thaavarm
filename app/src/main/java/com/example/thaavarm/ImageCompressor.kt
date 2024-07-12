@@ -4,7 +4,9 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import java.io.File
 import java.io.FileOutputStream
-import java.io.IOException
+
+
+//class needs to be reexamined and implemented
 
 class ImageCompressor {
     fun resizeAndCompressImage(filePath: String, maxSize: Int, quality: Int): File {
