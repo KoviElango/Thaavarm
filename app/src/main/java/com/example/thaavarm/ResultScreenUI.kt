@@ -1,6 +1,5 @@
 package com.example.thaavarm
 
-import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -16,7 +15,7 @@ import coil.compose.rememberImagePainter
 import android.util.Log
 
 @Composable
-fun ResultScreenUI(imageUri: String?, onBackClick: () -> Unit) {
+fun ResultScreenUI(imageUri: String?, plantName: String, plantFamily: String, onBackClick: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -54,7 +53,8 @@ fun ResultScreenUI(imageUri: String?, onBackClick: () -> Unit) {
                 )
             }
             Spacer(modifier = Modifier.height(18.dp))
-            Text(text = "Plant Name: Dummy Plant Name")
+            Text(text = "Plant: $plantName")
+            Text(text = "Family: $plantFamily")
         }
 
         MainButton(
@@ -71,6 +71,8 @@ fun ResultScreenUI(imageUri: String?, onBackClick: () -> Unit) {
 fun ResultScreenUIPreview() {
     ResultScreenUI(
         imageUri = "https://via.placeholder.com/300",
+        plantName = "Dummy Plant Name",
+        plantFamily = "Dummy Family Name",
         onBackClick = {}
     )
 }
