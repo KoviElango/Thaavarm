@@ -7,6 +7,7 @@ android {
     namespace = "com.example.thaavarm"
     compileSdk = 34
 
+
     defaultConfig {
         applicationId = "com.example.thaavarm"
         minSdk = 30

@@ -47,8 +47,17 @@ fun ResultScreenUI(
             if (plantResponse != null) {
                 val plantName = plantResponse.results.firstOrNull()?.species?.scientificNameWithoutAuthor ?: "Can't be found"
                 val plantFamily = plantResponse.results.firstOrNull()?.species?.family?.scientificNameWithoutAuthor ?: "Can't be found"
+                val commonNames = plantResponse.results.firstOrNull()?.species?.commonNames ?: emptyList()
                 Text(text = "Plant: $plantName")
                 Text(text = "Family: $plantFamily")
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Text(text = "Common Names:")
+                commonNames.forEach { name ->
+                    Text(text = name)
+                }
+
             } else {
                 CircularProgressIndicator()
             }

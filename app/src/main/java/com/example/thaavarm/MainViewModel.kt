@@ -14,19 +14,25 @@ class MainViewModel(private val repository: PlantRepository) : ViewModel() {
     private val _plantResponse = MutableStateFlow<PlantNetResponse?>(null)
     val plantResponse: StateFlow<PlantNetResponse?> = _plantResponse
 
+    val commonNames = MutableStateFlow<List<String>>(emptyList())
+
     fun identifyPlant(imageFile: File, apiKey: String) {
         viewModelScope.launch {
             try {
                 val response = repository.identifyPlant(imageFile, apiKey)
                 if (response.isSuccessful) {
                     _plantResponse.value = response.body()
+                    val names = response.body()?.results?.flatMap { it.species.commonNames } ?: emptyList()
+                    commonNames.value = names
                 } else {
                     // Handle error scenario here
                     _plantResponse.value = null
+                    commonNames.value = emptyList()
                 }
             } catch (e: Exception) {
                 // Handle exception here
                 _plantResponse.value = null
+                commonNames.value = emptyList()
             }
         }
     }

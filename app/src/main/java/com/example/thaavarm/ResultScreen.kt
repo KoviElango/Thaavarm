@@ -2,6 +2,8 @@ package com.example.thaavarm
 
 import android.net.Uri
 import android.util.Log
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
