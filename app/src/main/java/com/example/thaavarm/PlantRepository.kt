@@ -1,13 +1,13 @@
 package com.example.thaavarm.repository
 
 import android.util.Log
+import com.example.thaavarm.ImageCompressor
 import com.example.thaavarm.api.PlantNetApi
 import com.example.thaavarm.api.PlantNetResponse
-import com.example.thaavarm.ImageCompressor
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import retrofit2.Response
 import java.io.File
 

@@ -1,65 +1,48 @@
 package com.example.thaavarm
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.*
-import androidx.core.content.ContextCompat
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.thaavarm.ui.theme.ThaavarmTheme
 
 class MainActivity : ComponentActivity() {
-
-    private val requestPermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
-            if (isGranted) {
-                Log.d("MainActivity", "Camera permission granted")
-            } else {
-                Log.d("MainActivity", "Camera permission denied")
-            }
-        }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ThaavarmTheme {
                 Surface(color = MaterialTheme.colorScheme.background) {
                     Log.d("MainActivity", "App started. Developer: Koovendhan Elango (AKA) Kovi, Version: 1.0.0, Date: 2024-07-12")
-                    MyApp()
+                    MainContent()
                 }
             }
         }
+    }
+}
 
-        requestCameraPermission()
+@Composable
+fun MainContent() {
+    var permissionGranted by remember { mutableStateOf(false) }
+
+    RequestCameraPermission { granted ->
+        permissionGranted = granted
     }
 
-    private fun requestCameraPermission() {
-        when {
-            ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.CAMERA
-            ) == PackageManager.PERMISSION_GRANTED -> {
-                Log.d("MainActivity", "Camera permission already granted")
-            }
-            shouldShowRequestPermissionRationale(Manifest.permission.CAMERA) -> {
-                // You can show your own UI to explain why you need the permission before requesting it
-                Log.d("MainActivity", "Showing permission rationale")
-                requestPermissionLauncher.launch(Manifest.permission.CAMERA)
-            }
-            else -> {
-                // Directly request for required permissions, without explanation
-                Log.d("MainActivity", "Requesting camera permission")
-                requestPermissionLauncher.launch(Manifest.permission.CAMERA)
-            }
-        }
+    if (permissionGranted) {
+        MyApp()
+    } else {
+        Log.d("MainActivity", "Camera permission denied")
+        // Optionally, you can display a UI indicating the permission is required
     }
 }
 
@@ -74,6 +57,3 @@ fun MyApp() {
         }
     }
 }
-
-
-//reach out to https://github.com/KoviElango or kovendhanelango@gmail.com for any questions

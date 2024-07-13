@@ -3,17 +3,16 @@ package com.example.thaavarm
 import android.net.Uri
 import android.util.Log
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.navigation.NavController
-import com.example.thaavarm.viewmodel.MainViewModel
-import androidx.compose.material3.*
+import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.thaavarm.api.RetrofitInstance
 import com.example.thaavarm.repository.PlantRepository
+import com.example.thaavarm.viewmodel.MainViewModel
 import com.example.thaavarm.viewmodel.MainViewModelFactory
 import java.io.File
 
