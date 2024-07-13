@@ -20,4 +20,9 @@ interface PlantNetApi {
         @Query("api-key") apiKey: String
     ): Response<PlantNetResponse>
 }
-
+// this could help us troubleshoot the issue
+//curl -X POST "https://my-api.plantnet.org/v2/identify/all?include-related-images=false&no-reject=false&lang=en&api-key={Kovi's privt APIKEY}" \
+//  -H "accept: application/json" \
+//  -H "Content-Type: multipart/form-data" \
+//  -F "images=@/path/to/your/image.jpg;type=image/jpeg" \
+//  -F "organs=leaf"

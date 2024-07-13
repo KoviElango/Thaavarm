@@ -20,7 +20,7 @@ class PlantRepository(private val api: PlantNetApi) {
         val imageBody = MultipartBody.Part.createFormData("images", resizedImageFile.name, requestFile)
         val organsBody = "leaf".toRequestBody("text/plain".toMediaTypeOrNull())
 
-        // Log request details
+        // Log request details; this can be commented but here for troubleshooting purposes
         Log.d("PlantRepository", "Request URL: https://my-api.plantnet.org/v2/identify/all?api-key=$apiKey")
         Log.d("PlantRepository", "Images: ${resizedImageFile.absolutePath}")
         Log.d("PlantRepository", "Organs: leaf")

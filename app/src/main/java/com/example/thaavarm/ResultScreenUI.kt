@@ -12,6 +12,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.example.thaavarm.api.PlantNetResponse
 
+//only takes care of result screen UI changes, this could be improved
+
 @Composable
 fun ResultScreenUI(
     imageUri: String?,
@@ -45,8 +47,17 @@ fun ResultScreenUI(
             if (plantResponse != null) {
                 val plantName = plantResponse.results.firstOrNull()?.species?.scientificNameWithoutAuthor ?: "Can't be found"
                 val plantFamily = plantResponse.results.firstOrNull()?.species?.family?.scientificNameWithoutAuthor ?: "Can't be found"
+                val commonNames = plantResponse.results.firstOrNull()?.species?.commonNames ?: emptyList()
                 Text(text = "Plant: $plantName")
                 Text(text = "Family: $plantFamily")
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Text(text = "Common Names:")
+                commonNames.forEach { name ->
+                    Text(text = name)
+                }
+
             } else {
                 CircularProgressIndicator()
             }
