@@ -5,9 +5,6 @@ import android.graphics.BitmapFactory
 import java.io.File
 import java.io.FileOutputStream
 
-
-//class needs to be reexamined and implemented
-
 class ImageCompressor {
     fun resizeAndCompressImage(filePath: String, maxSize: Int, quality: Int): File {
         val options = BitmapFactory.Options()

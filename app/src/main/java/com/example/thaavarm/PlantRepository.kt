@@ -1,5 +1,6 @@
 package com.example.thaavarm.repository
 
+import android.util.Log
 import com.example.thaavarm.api.PlantNetApi
 import com.example.thaavarm.api.PlantNetResponse
 import com.example.thaavarm.ImageCompressor
@@ -17,19 +18,23 @@ class PlantRepository(private val api: PlantNetApi) {
         val resizedImageFile = imageCompressor.resizeAndCompressImage(imageFile.path, 1280, 90)
         val requestFile = resizedImageFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
         val imageBody = MultipartBody.Part.createFormData("images", resizedImageFile.name, requestFile)
-        val organs = "leaf".toRequestBody("text/plain".toMediaTypeOrNull())
-        val includeRelatedImages = "false".toRequestBody("text/plain".toMediaTypeOrNull())
-        val noReject = "false".toRequestBody("text/plain".toMediaTypeOrNull())
-        val lang = "en".toRequestBody("text/plain".toMediaTypeOrNull())
-        val apiKeyBody = apiKey.toRequestBody("text/plain".toMediaTypeOrNull())
+        val organsBody = "leaf".toRequestBody("text/plain".toMediaTypeOrNull())
+
+        // Log request details
+        Log.d("PlantRepository", "Request URL: https://my-api.plantnet.org/v2/identify/all?api-key=$apiKey")
+        Log.d("PlantRepository", "Images: ${resizedImageFile.absolutePath}")
+        Log.d("PlantRepository", "Organs: leaf")
+        Log.d("PlantRepository", "Include Related Images: false")
+        Log.d("PlantRepository", "No Reject: false")
+        Log.d("PlantRepository", "Lang: en")
 
         return api.identifyPlant(
             images = imageBody,
-            organs = organs,
-            includeRelatedImages = includeRelatedImages,
-            noReject = noReject,
-            lang = lang,
-            apiKey = apiKeyBody
+            organs = organsBody,
+            includeRelatedImages = false,
+            noReject = false,
+            lang = "en",
+            apiKey = apiKey
         )
     }
 }
