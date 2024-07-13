@@ -15,6 +15,7 @@ import com.example.thaavarm.viewmodel.MainViewModelFactory
 import com.example.thaavarm.api.RetrofitInstance
 import java.io.File
 
+//Change 1: API key should not be hardcoded and should be stored in a secure place
 
 @Composable
 fun ResultScreen(navController: NavController, imageUri: String?) {

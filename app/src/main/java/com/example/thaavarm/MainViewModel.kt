@@ -31,3 +31,8 @@ class MainViewModel(private val repository: PlantRepository) : ViewModel() {
         }
     }
 }
+
+//exception handling in MainViewModel ensures that any errors during the network request to identify a plant are handled
+// more user friendly messages maybe
+// a retry mechanism could be a good idea
+//fallback mechanism??!!

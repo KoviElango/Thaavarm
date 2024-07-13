@@ -63,3 +63,5 @@ fun MainButtonPreview() {
         MainButton(onClick = {}, isCamera = false)
     }
 }
+
+//maybe loose the dragon ball but it's Dragon ball, especially the one on Gohan's head, how could we loose it?

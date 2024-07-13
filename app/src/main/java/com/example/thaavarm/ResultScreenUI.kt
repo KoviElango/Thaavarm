@@ -12,6 +12,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.example.thaavarm.api.PlantNetResponse
 
+//only takes care of result screen UI changes, this could be improved
+
 @Composable
 fun ResultScreenUI(
     imageUri: String?,
