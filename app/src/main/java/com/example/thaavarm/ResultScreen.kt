@@ -8,13 +8,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
-import androidx.compose.material3.*
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.thaavarm.repository.PlantRepository
 import com.example.thaavarm.viewmodel.MainViewModel
 import com.example.thaavarm.viewmodel.MainViewModelFactory
 import com.example.thaavarm.api.RetrofitInstance
 import java.io.File
+
 
 @Composable
 fun ResultScreen(navController: NavController, imageUri: String?) {
