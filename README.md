@@ -32,6 +32,8 @@ We welcome contributions from the community! If you'd like to contribute, please
 4. Push to the branch (`git push origin feature-branch`).
 5. Create a pull request.
 
+contributons can be anything. bugs, suggestions, features, screenshots, documentation help, code review, code enhancement, clean architecture etc.
+
 ---
 
 Thank you for using Thaavarm! We hope you find it useful and enjoyable.
