@@ -4,6 +4,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -11,13 +13,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.example.thaavarm.api.PlantNetResponse
-
-//only takes care of result screen UI changes, this could be improved
+import com.example.thaavarm.viewmodel.MainViewModel
 
 @Composable
 fun ResultScreenUI(
     imageUri: String?,
     plantResponse: PlantNetResponse?,
+    commonNames: List<String>,
+    errorMessage: String?,
     onBackClick: () -> Unit
 ) {
     Box(
@@ -50,14 +53,16 @@ fun ResultScreenUI(
                 val commonNames = plantResponse.results.firstOrNull()?.species?.commonNames ?: emptyList()
                 Text(text = "Plant: $plantName")
                 Text(text = "Family: $plantFamily")
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                Text(text = "Common Names:")
-                commonNames.forEach { name ->
-                    Text(text = name)
+                if (commonNames.isNotEmpty()) {
+                    Text(text = "Common Names:")
+                    commonNames.forEach { name ->
+                        Text(text = name)
+                    }
+                } else {
+                    Text(text = "Common Names: Can't be found")
                 }
-
+            } else if (errorMessage != null) {
+                Text(text = errorMessage)
             } else {
                 CircularProgressIndicator()
             }
@@ -78,6 +83,8 @@ fun ResultScreenUIPreview() {
     ResultScreenUI(
         imageUri = "https://via.placeholder.com/300",
         plantResponse = null,
+        commonNames = emptyList(),
+        errorMessage = null,
         onBackClick = {}
     )
 }

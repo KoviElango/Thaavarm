@@ -15,30 +15,34 @@ class MainViewModel(private val repository: PlantRepository) : ViewModel() {
     val plantResponse: StateFlow<PlantNetResponse?> = _plantResponse
 
     val commonNames = MutableStateFlow<List<String>>(emptyList())
+    val errorMessage = MutableStateFlow<String?>(null)
 
     fun identifyPlant(imageFile: File, apiKey: String) {
         viewModelScope.launch {
             try {
                 val response = repository.identifyPlant(imageFile, apiKey)
                 if (response.isSuccessful) {
-                    _plantResponse.value = response.body()
-                    val names = response.body()?.results?.flatMap { it.species.commonNames } ?: emptyList()
-                    commonNames.value = names
+                    val body = response.body()
+                    if (body != null && body.results.isNotEmpty()) {
+                        _plantResponse.value = body
+                        val names = body.results.flatMap { it.species.commonNames }
+                        commonNames.value = names
+                        errorMessage.value = null
+                    } else {
+                        _plantResponse.value = null
+                        commonNames.value = emptyList()
+                        errorMessage.value = "Unable to identify the plant. Please try again with a different image."
+                    }
                 } else {
-                    // Handle error scenario here
                     _plantResponse.value = null
                     commonNames.value = emptyList()
+                    errorMessage.value = "Unable to identify the plant. Please try again with a different image."
                 }
             } catch (e: Exception) {
-                // Handle exception here
                 _plantResponse.value = null
                 commonNames.value = emptyList()
+                errorMessage.value = "An error occurred: ${e.message}. Please retry."
             }
         }
     }
 }
-
-//exception handling in MainViewModel ensures that any errors during the network request to identify a plant are handled
-// more user friendly messages maybe
-// a retry mechanism could be a good idea
-//fallback mechanism??!!
