@@ -1,21 +1,23 @@
 package com.example.thaavarm
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
-import android.util.Log
+import com.example.thaavarm.api.PlantNetResponse
 
 @Composable
-fun ResultScreenUI(imageUri: String?, plantName: String, plantFamily: String, onBackClick: () -> Unit) {
+fun ResultScreenUI(
+    imageUri: String?,
+    plantResponse: PlantNetResponse?,
+    onBackClick: () -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -27,34 +29,27 @@ fun ResultScreenUI(imageUri: String?, plantName: String, plantFamily: String, on
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (imageUri != null) {
-                Log.d("ResultScreenUI", "Image URI: $imageUri")
+            imageUri?.let {
                 Image(
-                    painter = rememberImagePainter(
-                        data = imageUri,
-                        builder = {
-                            crossfade(true)
-                        }
-                    ),
+                    painter = rememberImagePainter(it),
                     contentDescription = "Captured Image",
                     modifier = Modifier
                         .height(300.dp)
-                        .fillMaxWidth()
-                        .background(Color.Black),
+                        .fillMaxWidth(),
                     contentScale = ContentScale.Crop
                 )
-            } else {
-                Log.d("ResultScreenUI", "Image URI is null")
-                Box(
-                    modifier = Modifier
-                        .height(300.dp)
-                        .fillMaxWidth()
-                        .background(Color.Black)
-                )
             }
-            Spacer(modifier = Modifier.height(18.dp))
-            Text(text = "Plant: $plantName")
-            Text(text = "Family: $plantFamily")
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            if (plantResponse != null) {
+                val plantName = plantResponse.results.firstOrNull()?.species?.scientificNameWithoutAuthor ?: "Can't be found"
+                val plantFamily = plantResponse.results.firstOrNull()?.species?.family?.scientificNameWithoutAuthor ?: "Can't be found"
+                Text(text = "Plant: $plantName")
+                Text(text = "Family: $plantFamily")
+            } else {
+                CircularProgressIndicator()
+            }
         }
 
         MainButton(
@@ -71,8 +66,7 @@ fun ResultScreenUI(imageUri: String?, plantName: String, plantFamily: String, on
 fun ResultScreenUIPreview() {
     ResultScreenUI(
         imageUri = "https://via.placeholder.com/300",
-        plantName = "Dummy Plant Name",
-        plantFamily = "Dummy Family Name",
+        plantResponse = null,
         onBackClick = {}
     )
 }

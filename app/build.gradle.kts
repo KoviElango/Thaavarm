@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
 }
+
 android {
     namespace = "com.example.thaavarm"
     compileSdk = 34
@@ -63,7 +64,6 @@ dependencies {
     implementation("androidx.camera:camera-view:1.2.0-beta01")
     implementation("androidx.camera:camera-extensions:1.2.0-beta01")
     implementation("io.coil-kt:coil-compose:2.3.0")
-    implementation(libs.androidx.lifecycle.common.jvm)
     debugImplementation("androidx.compose.ui:ui-tooling:1.5.0")
     debugImplementation("androidx.compose.ui:ui-test-manifest:1.5.0")
 
@@ -72,10 +72,10 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.5.0")
 
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+    implementation("com.squareup.okhttp3:okhttp:4.9.0")
 }
-
