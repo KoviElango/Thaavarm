@@ -28,7 +28,7 @@ fun ResultScreen(navController: NavController, imageUri: String?) {
     LaunchedEffect(imageUri) {
         imageUri?.let {
             val file = File(Uri.parse(it).path!!)
-            Log.d("ResultScreen", "Image File Path: ${file.absolutePath}")
+           // Log.d("ResultScreen", "Image File Path: ${file.absolutePath}")
             viewModel.identifyPlant(file, "2b10jVHqA1F6CyulhEX3oTZekO")
         }
     }

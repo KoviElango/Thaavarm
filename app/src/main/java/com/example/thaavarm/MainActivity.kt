@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ThaavarmTheme {
                 Surface(color = MaterialTheme.colorScheme.background) {
-                    Log.d("MainActivity", "App started. Developer: Koovendhan Elango (AKA) Kovi, Version: 1.0.0, Date: 2024-07-12")
+                    //Log.d("MainActivity", "App started. Developer: Koovendhan Elango (AKA) Kovi, Version: 1.0.0, Date: 2024-07-12")
                     MainContent()
                 }
             }

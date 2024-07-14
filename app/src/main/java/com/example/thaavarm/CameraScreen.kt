@@ -37,7 +37,7 @@ fun CameraScreen(navController: NavController) {
                 executor = cameraExecutor,
                 onImageCaptured = { uri ->
                     val encodedUri = URLEncoder.encode(uri.toString(), StandardCharsets.UTF_8.toString())
-                    Log.d("CameraScreen", "Navigating to URI: $encodedUri")
+                    //Log.d("CameraScreen", "Navigating to URI: $encodedUri")
                     navController.navigate("result/$encodedUri")
                 },
                 onError = { exc ->

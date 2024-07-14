@@ -31,17 +31,17 @@ class MainViewModel(private val repository: PlantRepository) : ViewModel() {
                     } else {
                         _plantResponse.value = null
                         commonNames.value = emptyList()
-                        errorMessage.value = "Unable to identify the plant. Please try again with a different image."
+                        errorMessage.value = "Unable to identify the plant. Please retry with a different image."
                     }
                 } else {
                     _plantResponse.value = null
                     commonNames.value = emptyList()
-                    errorMessage.value = "Unable to identify the plant. Please try again with a different image."
+                    errorMessage.value = "Unable to identify the plant. Please retry with a different image."
                 }
             } catch (e: Exception) {
                 _plantResponse.value = null
                 commonNames.value = emptyList()
-                errorMessage.value = "An error occurred: ${e.message}. Please retry."
+                errorMessage.value = "An error occurred: ${e.message}. Please retry!"
             }
         }
     }

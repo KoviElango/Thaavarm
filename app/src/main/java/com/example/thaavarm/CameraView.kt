@@ -113,7 +113,7 @@ fun CameraView(
                         ContextCompat.getMainExecutor(context),
                         object : ImageCapture.OnImageSavedCallback {
                             override fun onError(exc: ImageCaptureException) {
-                                Log.e("CameraView", "Photo capture failed: ${exc.message}", exc)
+                                //Log.e("CameraView", "Photo capture failed: ${exc.message}", exc)
                                 onError(exc)
                             }
 

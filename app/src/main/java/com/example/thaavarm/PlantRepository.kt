@@ -19,14 +19,14 @@ class PlantRepository(private val api: PlantNetApi) {
         val requestFile = resizedImageFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
         val imageBody = MultipartBody.Part.createFormData("images", resizedImageFile.name, requestFile)
         val organsBody = "leaf".toRequestBody("text/plain".toMediaTypeOrNull())
-
-        // Log request details; this can be commented but here for troubleshooting purposes
-        Log.d("PlantRepository", "Request URL: https://my-api.plantnet.org/v2/identify/all?api-key=$apiKey")
-        Log.d("PlantRepository", "Images: ${resizedImageFile.absolutePath}")
-        Log.d("PlantRepository", "Organs: leaf")
-        Log.d("PlantRepository", "Include Related Images: false")
-        Log.d("PlantRepository", "No Reject: false")
-        Log.d("PlantRepository", "Lang: en")
+//
+//        // Log request details; this can be commented but here for troubleshooting purposes
+//        Log.d("PlantRepository", "Request URL: https://my-api.plantnet.org/v2/identify/all?api-key=$apiKey")
+//        Log.d("PlantRepository", "Images: ${resizedImageFile.absolutePath}")
+//        Log.d("PlantRepository", "Organs: leaf")
+//        Log.d("PlantRepository", "Include Related Images: false")
+//        Log.d("PlantRepository", "No Reject: false")
+//        Log.d("PlantRepository", "Lang: en")
 
         return api.identifyPlant(
             images = imageBody,
